@@ -117,4 +117,6 @@ loop. It's most probably useful as a proof of concept only.
 
 L<Range::Iter>
 
+L<Range::Iterator>
+
 =cut
