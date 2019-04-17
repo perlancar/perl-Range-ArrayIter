@@ -11,7 +11,7 @@ our @EXPORT_OK = qw(range_arrayiter);
 
 my $re_num = qr/\A[+-]?[0-9]+(\.[0-9]+)?\z/;
 
-sub range_arrayiter($$;$) : lvalue {
+sub range_arrayiter($$;$) {
     my ($start, $end, $step) = @_;
 
     tie my @ary, 'Range::ArrayIter::Tie', $start, $end, $step;
