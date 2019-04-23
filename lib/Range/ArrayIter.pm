@@ -9,8 +9,6 @@ use warnings;
 use Exporter qw(import);
 our @EXPORT_OK = qw(range_arrayiter);
 
-my $re_num = qr/\A[+-]?[0-9]+(\.[0-9]+)?\z/;
-
 sub range_arrayiter($$;$) {
     my ($start, $end, $step) = @_;
 
@@ -20,6 +18,8 @@ sub range_arrayiter($$;$) {
 
 package # hide from PAUSE
     Range::ArrayIter::Tie;
+
+use Scalar::Util qw(looks_like_number);
 
 sub TIEARRAY {
     my $class = shift;
@@ -37,7 +37,7 @@ sub TIEARRAY {
         _buf   => [],
     };
 
-    if ($start =~ $re_num && $end =~ $re_num) {
+    if (looks_like_number($start) && looks_like_number($end)) {
         $self->{_num}   = 1;
         $self->{_ended}++ if $start > $end;
     } else {
@@ -95,9 +95,14 @@ You can add step:
 
  my $iter = range_arrayiter(1, 10, 2); # 1, 3, 5, 7, 9
 
-Anything that can be incremented by Perl is game:
+You can use alphanumeric strings too since C<++> has some extra builtin magic
+(see L<perlop>):
 
-  $iter = range_arrayiter("a", "e"); # a, b, c, d, e
+ $iter = range_arrayiter("zx", "aab"); # zx, zy, zz, aaa, aab
+
+Infinite list:
+
+ $iter = range_arrayiter(1, Inf); # 1, 2, 3, ...
 
 
 =head1 DESCRIPTION
