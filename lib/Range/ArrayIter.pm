@@ -70,7 +70,6 @@ sub FETCHSIZE {
 
 sub FETCH {
     my $self = shift;
-    $self->_next;
     if (@{ $self->{_buf} }) {
         $self->{_len}++;
         shift @{ $self->{_buf} };
