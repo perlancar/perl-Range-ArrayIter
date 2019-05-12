@@ -123,4 +123,8 @@ L<Range::Iter>
 
 L<Range::Iterator>
 
+L<Range::HashIter>
+
+L<Range::HandleIter>
+
 =cut
