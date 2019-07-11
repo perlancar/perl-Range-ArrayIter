@@ -1,4 +1,4 @@
-0.002   2019-04-23 (PERLANCAR)
+0.002   2019-04-23  Released-By: PERLANCAR
 
 	- [bugfix] Fix double push that causes buffer to grow indefinitely.
 
@@ -6,6 +6,6 @@
 	  for number, to allow using Inf.
 
 
-0.001   2019-04-17 (PERLANCAR)
+0.001   2019-04-17  Released-By: PERLANCAR
 
         - first release.
